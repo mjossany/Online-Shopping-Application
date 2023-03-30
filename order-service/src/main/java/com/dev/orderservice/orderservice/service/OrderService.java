@@ -1,9 +1,9 @@
 package com.dev.orderservice.orderservice.service;
 
-import com.dev.orderservice.orderservice.dto.OrderLineItemsDto;
+import com.dev.orderservice.orderservice.dto.OrderListItemsDto;
 import com.dev.orderservice.orderservice.dto.OrderRequest;
 import com.dev.orderservice.orderservice.model.Order;
-import com.dev.orderservice.orderservice.model.OrderLineItems;
+import com.dev.orderservice.orderservice.model.OrderListItems;
 import com.dev.orderservice.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,20 +21,20 @@ public class OrderService {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
-        List<OrderLineItems> orderLineItems = orderRequest.getOrderLineItemsDtoList()
+        List<OrderListItems> orderListItems = orderRequest.getOrderListItemsDtoList()
                 .stream()
                 .map(this::mapToDto)
                 .toList();
-        order.setOrderLineItemsList(orderLineItems);
+        order.setOrderListItemsList(orderListItems);
 
         orderRepository.save(order);
     }
 
-    private OrderLineItems mapToDto(OrderLineItemsDto orderLineItemsDto) {
-        OrderLineItems orderLineItems = new OrderLineItems();
-        orderLineItems.setPrice(orderLineItemsDto.getPrice());
-        orderLineItems.setQuantity(orderLineItemsDto.getQuantity());
-        orderLineItems.setSkuCode(orderLineItemsDto.getSkuCode());
-        return orderLineItems;
+    private OrderListItems mapToDto(OrderListItemsDto orderListItemsDto) {
+        OrderListItems orderListItems = new OrderListItems();
+        orderListItems.setPrice(orderListItemsDto.getPrice());
+        orderListItems.setQuantity(orderListItemsDto.getQuantity());
+        orderListItems.setSkuCode(orderListItemsDto.getSkuCode());
+        return orderListItems;
     }
 }

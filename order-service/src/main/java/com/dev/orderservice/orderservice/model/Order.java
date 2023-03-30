@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name="t_orders")
+@Table(name="t_orders", schema = "order-service")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +20,5 @@ public class Order {
     private String orderNumber;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<OrderLineItems> orderLineItemsList;
+    private List<OrderListItems> orderListItemsList;
 }
