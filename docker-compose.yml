@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  mongo:
+  mongo_db:
     container_name: mongo
     image: mongo:4.4.14-rc0-focal
     restart: always
@@ -8,17 +8,17 @@ services:
       - "27017:27017"
     expose:
       - "27017"
-  db-order-service:
+  mysql_order:
     image: mysql:latest
-    container_name: mysql_db_order_service
+    container_name: mysql_order
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: order-service
     ports:
       - "3306:3306"
-  db-inventory-service:
+  mysql_inventory:
     image: mysql:latest
-    container_name: mysql_db_inventory_service
+    container_name: mysql_inventory
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: inventory-service
